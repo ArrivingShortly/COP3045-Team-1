@@ -44,8 +44,8 @@ print("\n--- 3. GENERATING VISUALIZATIONS ---")
 # Visualization 1: Distribution of Prices
 if price_col:
     plt.figure(figsize=(8, 5))
-    sns.histplot(df_sales[price_col].dropna(), kde=True, color='teal')
-    plt.title('Distribution of Car Prices (Real Data)')
+    sns.histplot(df_sales[price_col].dropna(), kde=True, fill=False, color='teal')
+    plt.title('Distribution of Car Prices')
     plt.xlabel('Price ($)')
     plt.ylabel('Count')
     plt.savefig('viz1_selling_price.png')
@@ -56,8 +56,8 @@ if price_col:
 plt.figure(figsize=(8, 5))
 numeric_df = df_sales.select_dtypes(include=[np.number])
 if not numeric_df.empty:
-    sns.heatmap(numeric_df.corr(), annot=True, cmap='Blues', fmt='.2f')
-    plt.title('Real Data Correlation Heatmap')
+    sns.heatmap(numeric_df.corr(), annot=True, cmap='viridis', fmt='.2f')
+    plt.title('Correlation Heatmap')
     plt.savefig('viz2_correlation.png')
     plt.close()
     print("Generated: viz2_correlation.png")
@@ -65,8 +65,8 @@ if not numeric_df.empty:
 # Visualization 3: Scatter Plot (Mileage vs Price)
 if mileage_col and price_col:
     plt.figure(figsize=(8, 5))
-    sns.scatterplot(x=mileage_col, y=price_col, data=df_sales, alpha=0.6, color='purple')
-    plt.title('Mileage vs. Price (Real Data)')
+    sns.scatterplot(x=mileage_col, y=price_col, data=df_sales, alpha=0.6, hue=year_col)
+    plt.title('Mileage & Price vs. Price')
     plt.xlabel('Mileage')
     plt.ylabel('Price ($)')
     plt.savefig('viz3_mileage_vs_price.png')
