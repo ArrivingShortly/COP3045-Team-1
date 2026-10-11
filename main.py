@@ -41,7 +41,7 @@ for col in df_sales.select_dtypes(include=[np.number]).columns:
 
 print("\n--- 3. GENERATING VISUALIZATIONS ---")
 
-# Visualization 1: Distribution of Prices
+# Visualization 1: Distribution of Car Prices
 if price_col:
     plt.figure(figsize=(8, 5))
     sns.histplot(df_sales[price_col].dropna(), kde=True, fill=False, color='teal')
